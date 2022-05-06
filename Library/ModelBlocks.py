@@ -3,7 +3,7 @@ Model Block Functions
 '''
 
 # Imports
-from keras.layers import *
+from tensorflow.keras.layers import *
 
 # Main Functions
 # Encoder Block Functions
