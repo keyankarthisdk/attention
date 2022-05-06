@@ -42,7 +42,7 @@ def Model_EncoderDecoderBlocks(X_shape, Y_shape, Blocks, **params):
     print("Encoder Input:", encoder_input.shape)
     encoder_embedding = Embedding(
         DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["input"]+1, params["encoder"]["embedding_size"], 
-        # input_length=X_shape[1], 
+        # input_length=DATASET_DAKSHINA_TAMIL_MAX_CHARS["input"], 
         # mask_zero=True, 
         mask_zero=False,
         name="encoder_embedding"
@@ -66,7 +66,7 @@ def Model_EncoderDecoderBlocks(X_shape, Y_shape, Blocks, **params):
     print("Decoder Input:", decoder_input.shape)
     decoder_embedding = Embedding(
         DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["target"]+1, params["decoder"]["embedding_size"],
-        # input_length=Y_shape[1], 
+        # input_length=DATASET_DAKSHINA_TAMIL_MAX_CHARS["target"], 
         # mask_zero=True,
         mask_zero=False,
         name="decoder_embedding"
@@ -91,9 +91,12 @@ def Model_EncoderDecoderBlocks(X_shape, Y_shape, Blocks, **params):
         # Concat Layer
         decoder_concat_input = Concatenate(axis=-1, name="concat")([decoderData[-1]["output"], att_output])
         # Output Layer
-        decoder_outputs = TimeDistributed(Dense(
+        # decoder_outputs = TimeDistributed(Dense(
+        #     DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["target"]+1, activation="softmax", name="decoder_dense"
+        # ))(decoder_concat_input)
+        decoder_outputs = Dense(
             DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["target"]+1, activation="softmax", name="decoder_dense"
-        ))(decoder_concat_input)
+        )(decoder_concat_input)
     else:
         # Output Layer
         decoder_outputs = Dense(
