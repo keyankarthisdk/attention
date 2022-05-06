@@ -6,7 +6,7 @@ Model
 import wandb
 from wandb.keras import WandbCallback
 import math
-from keras.models import load_model, Model
+from tensorflow.keras.models import load_model, Model
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.losses import CategoricalCrossentropy, SparseCategoricalCrossentropy
 from tensorflow.keras.metrics import CategoricalAccuracy, SparseCategoricalAccuracy
