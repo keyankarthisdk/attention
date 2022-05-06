@@ -91,12 +91,12 @@ def Model_EncoderDecoderBlocks(X_shape, Y_shape, Blocks, **params):
         # Concat Layer
         decoder_concat_input = Concatenate(axis=-1, name="concat")([decoderData[-1]["output"], att_output])
         # Output Layer
-        # decoder_outputs = TimeDistributed(Dense(
-        #     DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["target"]+1, activation="softmax", name="decoder_dense"
-        # ))(decoder_concat_input)
-        decoder_outputs = Dense(
+        decoder_outputs = TimeDistributed(Dense(
             DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["target"]+1, activation="softmax", name="decoder_dense"
-        )(decoder_concat_input)
+        ))(decoder_concat_input)
+        # decoder_outputs = Dense(
+        #     DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["target"]+1, activation="softmax", name="decoder_dense"
+        # )(decoder_concat_input)
     else:
         # Output Layer
         decoder_outputs = Dense(
