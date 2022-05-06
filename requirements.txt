@@ -1,0 +1,9 @@
+keras
+# keras==2.6.0
+# numpy==1.19.5
+# pandas==1.3.4
+tensorflow
+# tensorflow==2.6.0
+tqdm
+# tqdm==4.62.3
+wandb
