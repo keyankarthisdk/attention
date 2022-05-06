@@ -43,7 +43,8 @@ def Model_EncoderDecoderBlocks(X_shape, Y_shape, Blocks, **params):
     encoder_embedding = Embedding(
         DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["input"]+1, params["encoder"]["embedding_size"], 
         # input_length=X_shape[1], 
-        mask_zero=True, 
+        # mask_zero=True, 
+        mask_zero=False,
         name="encoder_embedding"
     )(encoder_input)
     print("Encoder Embedding:", encoder_embedding.shape)
@@ -66,7 +67,8 @@ def Model_EncoderDecoderBlocks(X_shape, Y_shape, Blocks, **params):
     decoder_embedding = Embedding(
         DATASET_DAKSHINA_TAMIL_UNIQUE_CHARS["target"]+1, params["decoder"]["embedding_size"],
         # input_length=Y_shape[1], 
-        mask_zero=True,
+        # mask_zero=True,
+        mask_zero=False,
         name="decoder_embedding"
     )(decoder_input)
     print("Decoder Embedding:", decoder_embedding.shape)
