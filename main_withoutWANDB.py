@@ -88,6 +88,8 @@ def Model_Sweep_Run(config_data):
     )
     MODEL = Model_Compile(MODEL, **inputs["model"]["compile_params"])
 
+    print(MODEL.summary())
+
     # Train Model
     TRAINED_MODEL, TRAIN_HISTORY = Model_Train(
         MODEL, inputs, N_EPOCHS, {"enable": False}, 
